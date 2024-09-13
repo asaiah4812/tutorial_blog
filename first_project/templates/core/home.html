@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<p class="text-4xl font-bold text-center block">My Blog Listings</p>
+  <section class="w-[95%] md:w-[80%] mt-10 bg-blue-100 gap-4 lg:w-[75%] mx-auto grid p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+{% for post in posts %}
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="{% url 'post' post.slug %}">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{post.name}}</h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+    <a href="{% url 'post' post.slug %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Read more
+        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+    </a>
+    {% if request.user.post.user %}
+    <a href="{% url 'post-delete' post.pk %}" class="btn">Delete</a>
+    {% endif %}
+</div>
+{% endfor %}
+  </section>
+  <style>
+    .btn{
+      padding: 10px 12px;
+      color: white;
+      border-radius: 10px;
+      background: red;
+    }
+    .btn:hover{
+      background: rgb(226, 79, 79);
+    }
+  </style>
+{% endblock %}

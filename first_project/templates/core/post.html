@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}post{% endblock %}
+
+{% block content %}
+<section class="w-[75%] mx-auto content pt-16 flex flex-col gap-4">
+    <h2 class="text-center text-4xl font-bold"> {{post.name}}</h2>
+    <strong>Author: <span class="author">{{post.user}}</span></strong>
+   <p>
+       {{post.body}}
+
+   </p>
+   {% if post.user %}
+   <!-- Modal toggle -->
+   <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block w-fit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    Update post
+   </button>
+   {% endif %}
+{% include 'include/update_modal.html' %}
+</section>
+<style>
+    .content{
+        width: 800px;
+        margin: 0 auto;
+        padding-top: 2rem;
+    }
+    .author{
+        color: #555555;
+        font-weight: 400;
+    }
+    .btn{
+        padding: 10px 12px ;
+        align-self: flex-start;
+        color: white;
+        background: blue;
+        border-radius: 10px;
+    }
+</style>
+{% endblock %}
